@@ -11,6 +11,9 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv ${MONGO_GPG_KEY
 	&& apt-get -y update \
 	&& apt-get -y install python-minimal ansible mongodb-org beanstalkd supervisor
 
+# Clean apt cache
+RUN rm -rf /var/cache/apt
+
 # Minimal mongo setup
 RUN mkdir -p /data/db && chown mongodb:mongodb /data/db
 
