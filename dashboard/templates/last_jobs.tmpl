@@ -1,0 +1,39 @@
+<html>
+<head>
+  <link rel="stylesheet" href="/public/css/last_jobs.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<h1>last 100 jobs</h1>
+<table>
+  <th>ID</th>
+  <th>STATUS</th>
+  <th>QUEUE ID</th>
+  <th>HOSTS</th>
+  <th>PLAYBOOK</th>
+  {{ range .lastJobs }}
+  <tr>
+    <td class="job-id">{{ .Id.Hex }}</td>
+    {{ if eq .Status "failed" }}
+      <td class="job-failed">{{ .Status }}</td>
+    {{ end }}
+
+    {{ if eq .Status "running" }}
+      <td class="job-running">{{ .Status }}</td>
+    {{ end }}
+
+    {{ if eq .Status "queued" }}
+      <td class="job-queued">{{ .Status }}</td>
+    {{ end }}
+
+    {{ if eq .Status "done" }}
+      <td class="job-done">{{ .Status }}</td>
+    {{ end }}
+    <td>{{ .QueueId }}</td>
+    <td>{{ .Hosts }}</td>
+    <td>{{ .Playbook }}</td>
+  </tr>
+  {{ end }}
+</table>
+</body>
+</html>

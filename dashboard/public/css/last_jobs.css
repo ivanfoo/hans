@@ -1,0 +1,78 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  background-color: #2c3e50;
+  color: white;
+  height: 50px;
+  line-height: 50px;
+  font-size: 25px;
+  font-family: 'Roboto', sans-serif;
+  padding-left: 20px;
+  margin: 0;
+}
+
+table, td {
+  border: none;
+  border-collapse: collapse;
+  font-family: 'Roboto', sans-serif;
+}
+
+table {
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 20px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background-color: white;
+}
+tr:nth-child(odd) td {
+  background-color: #ecf0f1;
+}
+
+td {
+  height: 25px;
+  line-height: 25px;
+}
+
+th {
+  background-color: #2c3e50;
+  color: white;
+  height: 25px;
+  line-height: 25px;
+}
+
+.job-id {
+}
+
+.job-failed {
+  font-weight: bold;
+  color: #e74c3c;
+  padding: 0;
+}
+
+.job-done {
+  font-weight: bold;
+  color: #2ecc71;
+  padding: 0;
+}
+
+.job-queued {
+  font-weight: bold;
+  color: #8e44ad;
+  padding: 0;
+}
+
+.job-running {
+  font-weight: bold;
+  color: #f1c40f;
+  padding: 0;
+}
+

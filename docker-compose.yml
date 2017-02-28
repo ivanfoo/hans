@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  server:
+    image: hans
+    container_name: hans-server
+    environment:
+      - MONGO_SERVER=mongo:27017
+      - BEANSTALK_SERVER=beanstalk:11300
+      - ANSIBLE_STUFF=ansible
+    depends_on:
+      - mongo
+      - beanstalk
+    links:
+      - mongo:mongo
+      - beanstalk:beanstalk
+    ports:
+      - "8080:8080"
+    volumes:
+      - "${HANS_ANSIBLE_STUFF}:/ansible"
+  mongo:
+    image: mongo
+    container_name: hans-mongo
+    expose:
+      - "27017"
+  beanstalk:
+    image: schickling/beanstalkd
+    container_name: hans-beanstalk
+    expose:
+      - "11300"
+
