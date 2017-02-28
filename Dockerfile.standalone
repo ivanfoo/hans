@@ -17,6 +17,9 @@ RUN rm -rf /var/cache/apt
 # Minimal mongo setup
 RUN mkdir -p /data/db && chown mongodb:mongodb /data/db
 
+# Create directory for queue persistence
+RUN mkdir -p /hans/queue
+
 # Add go binary
 ADD build/* /hans/
 
