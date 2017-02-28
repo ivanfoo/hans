@@ -39,7 +39,7 @@ func (j *Job) Run() error {
 	if j.Aws != nil {
 		os.Setenv("AWS_PROFILE", j.Aws.Session)
 
-		clearCache := exec.Command("rm", "-rf", "~/.ansible/tmp/*")
+		clearCache := exec.Command("rm", "-rf", "/hans/ansible/tmp/*")
 		err := clearCache.Run()
 		if err != nil {
 			return err
@@ -56,7 +56,7 @@ func (j *Job) Run() error {
 
 func (j *Job) runPlaybook() error {
 	stringifiedHosts := strings.Join(j.Hosts[:], ",")
-	os.Chdir(os.Getenv("HANS_ANSIBLE_STUFF"))
+	os.Chdir("/hans/ansible")
 
 	cmd := exec.Command(ansibleCommand, j.Playbook, "-l", stringifiedHosts)
 	err := cmd.Run()
