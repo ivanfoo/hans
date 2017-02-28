@@ -1,0 +1,31 @@
+# hAns standalone image
+FROM alpine:edge
+
+# Install packages
+RUN apk update && apk add git ansible curl beanstalkd
+
+# Download mongodb
+RUN cd /tmp && curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.2.tgz \
+	&& tar xzfv mongodb-linux-x86_64-3.4.2.tgz \
+	&& mv mongodb-linux-x86_64-3.4.2/bin/* /usr/local/bin \
+	&& rm -rf /var/cache/apk
+
+# Required directories
+RUN mkdir -p /data/db /hans/queue
+
+# Add go binary
+ADD build/* /hans/
+
+# Add dashboard files
+ADD dashboard/templates /hans/dashboard/templates
+ADD dashboard/public /hans/dashboard/public
+
+# Add supervisor config
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Ports
+EXPOSE 8080
+
+# Start all services
+WORKDIR /hans
+CMD ["/usr/bin/supervisord"]
